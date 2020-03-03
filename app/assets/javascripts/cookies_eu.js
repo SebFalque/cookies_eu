@@ -22,11 +22,13 @@ var cookiesEu = {
   },
 
   addListener: function(target, is_ok) {
+    var setCookieBoundFunction = this.setCookie.bind(this, is_ok);
+
     // Support for IE < 9
     if (target.attachEvent) {
-      target.attachEvent('onclick', function() { this.setCookie(is_ok); });
+      target.attachEvent('onclick', setCookieBoundFunction);
     } else {
-      target.addEventListener('click', function() { this.setCookie(is_ok); }, false);
+      target.addEventListener('click',setCookieBoundFunction, false);
     }
   },
 
