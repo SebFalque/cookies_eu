@@ -22,9 +22,8 @@ $cookies-eu-mobile: 'max-width: 767px';
 
   @media ($cookies-eu-mobile) {
     font-size: 14px;
-    text-align: center;
-
-    position: initial;
+    bottom: auto;
+    top: 0;
   }
 
   .cookies-eu-content-holder {
