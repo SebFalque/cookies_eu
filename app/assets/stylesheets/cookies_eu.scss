@@ -5,7 +5,7 @@ $cookies-eu-button-color: #FFFFFF;
 $cookies-eu-mobile: 'max-width: 767px';
 
 .cookies-eu {
-  line-height: 40px;
+  line-height: 1.5;
 
   position: fixed;
   z-index: 999;
@@ -15,14 +15,14 @@ $cookies-eu-mobile: 'max-width: 767px';
 
   padding: 0 20px;
 
-  text-align: center;
+  text-align: start;
 
   border-top: 1px solid $cookies-eu-border-color;
   background: $cookies-eu-background-color;
 
   @media ($cookies-eu-mobile) {
-    font-size: 12px;
-    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
 
     position: initial;
   }
@@ -30,17 +30,17 @@ $cookies-eu-mobile: 'max-width: 767px';
   .cookies-eu-content-holder {
     display: inline-block;
 
-    padding: 0 20px;
+    padding: 0;
   }
 
   .cookies-eu-button-holder {
     display: inline-block;
 
     .cookies-eu-ok {
-      font-size: 11px;
+      font-size: 14px;
       font-weight: bold;
 
-      line-height: 20px;
+      line-height: 1.5;
 
       min-width: 26px;
       margin-right: 5px;

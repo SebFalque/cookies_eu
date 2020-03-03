@@ -82,6 +82,12 @@ You can add a target parameter to the link to open in a new tab
 = render 'cookies_eu/consent_banner', link: '/cookies', target: '_blank'
 ```
 
+You can add a with_not_ok_button parameter to add a additional 'Not OK' button to refuse consen
+
+```ruby
+= render 'cookies_eu/consent_banner', with_not_ok_button: true, link: '/privacy_policy'
+```
+
 If you wish to customize the style of the div the classes are:
 
 ```css
@@ -94,7 +100,7 @@ If you wish to customize the style of the div the classes are:
 
 ## Cookies used
 
-This gem uses a cookie called **cookie_eu_consented** to track whether a user has accepted the cookie notice and whether it needs to be shown again or not.
+This gem uses a cookie called **cookie_eu_consented** to track whether a user has accepted or refuse the usage of cookies using the notice buttons and whether it needs to be shown again or not.
 
 ## Turbolinks 5+
 

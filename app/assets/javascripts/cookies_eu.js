@@ -6,26 +6,33 @@ var windowIsTurbolinked = 'Turbolinks' in window;
 var cookiesEu = {
   init: function() {
     var cookiesEuOKButton = document.querySelector('.js-cookies-eu-ok');
+    var cookiesEuNOKButton = document.querySelector('.js-cookies-eu-not-ok');
 
     if (cookiesEuOKButton) {
-      this.addListener(cookiesEuOKButton);
+      this.addListener(cookiesEuOKButton, true);
+      // clear turbolinks cache so cookie banner does not reappear
+      windowIsTurbolinked && window.Turbolinks.clearCache();
+    }
+
+    if (cookiesEuNOKButton) {
+      this.addListener(cookiesEuNOKButton, false);
       // clear turbolinks cache so cookie banner does not reappear
       windowIsTurbolinked && window.Turbolinks.clearCache();
     }
   },
 
-  addListener: function(target) {
+  addListener: function(target, is_ok) {
     // Support for IE < 9
     if (target.attachEvent) {
-      target.attachEvent('onclick', this.setCookie);
+      target.attachEvent('onclick', function() { this.setCookie(is_ok); });
     } else {
-      target.addEventListener('click', this.setCookie, false);
+      target.addEventListener('click', function() { this.setCookie(is_ok); }, false);
     }
   },
 
-  setCookie: function() {
+  setCookie: function(is_ok) {
     var isSecure = location.protocol === 'https:';
-    Cookies.set('cookie_eu_consented', true, { path: '/', expires: 365, secure: isSecure });
+    Cookies.set('cookie_eu_consented', is_ok, { path: '/', expires: 365, secure: isSecure });
 
     var container = document.querySelector('.js-cookies-eu');
     container.parentNode.removeChild(container);

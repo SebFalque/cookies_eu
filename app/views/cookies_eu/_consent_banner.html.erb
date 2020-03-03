@@ -1,11 +1,22 @@
-<% if cookies && cookies['cookie_eu_consented'] != 'true' %>
+<% if cookies && cookies['cookie_eu_consented'].nil? %>
   <div class="cookies-eu js-cookies-eu">
-    <span class="cookies-eu-content-holder"><%= t('cookies_eu.cookies_text') %></span>
+    <span class="cookies-eu-content-holder">
+      <%= t('cookies_eu.cookies_text').html_safe %>
+    </span>
     <span class="cookies-eu-button-holder">
-    <button class="cookies-eu-ok js-cookies-eu-ok"> <%= t('cookies_eu.ok') %> </button>
-    <% if defined?(link).present? %>
-      <a href="<%= link %>" class="cookies-eu-link" target="<%= defined?(target).present? ? target : '' %>"> <%= t('cookies_eu.learn_more') %> </a>
-    <% end %>
+      <button class="cookies-eu-ok js-cookies-eu-ok">
+        <%= t('cookies_eu.ok') %>
+      </button>
+      <% if defined?(with_not_ok_button).present? and with_not_ok_button %>
+        <button class="cookies-eu-ok js-cookies-eu-not-ok">
+          <%= t('cookies_eu.not_ok') %>
+        </button>
+      <% end %>
+      <% if defined?(link).present? %>
+        <a href="<%= link %>" class="cookies-eu-link" target="<%= defined?(target).present? ? target : '' %>">
+          <%= t('cookies_eu.learn_more') %>
+        </a>
+      <% end %>
     </span>
   </div>
 <% end %>
